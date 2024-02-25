@@ -19,10 +19,9 @@ class SpaceJam(ShowBase): #Constructor
             nickName = "Drone" + str(spaceJamClasses.Drone.droneCount)
             self.DrawCloudDefense(self.Planet1, nickName)
             self.DrawBaseballSeams(self.Station, nickName, j, fullCycle, 1)
-            self.DrawCircleXY()
-            self.DrawCircleXZ()
-            self.DrawCircleYZ()
-            # Figure out how to draw circles around the planets.
+        self.DrawCircleXY()
+        self.DrawCircleXZ()
+        self.DrawCircleYZ()
 
     def SetCamera(self):
         self.disableMouse()

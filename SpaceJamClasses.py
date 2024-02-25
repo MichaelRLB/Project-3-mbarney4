@@ -104,22 +104,28 @@ class Player(ShowBase):
         # Key bindings for our spaceship's movement.
         self.accept('space', self.Thrust, [1])
         self.accept('space-up', self.Thrust, [0])
+
         self.accept('arrow_left', self.LeftTurn, [1])
         self.accept('arrow_left-up', self.LeftTurn, [0])
         self.accept('a', self.LeftTurn, [1])
         self.accept('a-up', self.LeftTurn, [0])
+        
         self.accept('arrow_right', self.RightTurn, [1])
         self.accept('arrow_right-up', self.RightTurn, [0])
         self.accept('d', self.RightTurn, [1])
         self.accept('d-up', self.RightTurn, [0])
+
         self.accept('q', self.LeftRoll, [1])                     
         self.accept('q-up', self.LeftRoll, [0])
+
         self.accept('e', self.RightRoll, [1])                     
-        self.accept('e-up', self.RightRoll, [0])                                
+        self.accept('e-up', self.RightRoll, [0])
+
         self.accept('arrow_up', self.UpTurn, [1])
         self.accept('arrow_up-up', self.UpTurn, [0])
         self.accept('w', self.UpTurn, [1])
         self.accept('w-up', self.UpTurn, [0])
+
         self.accept('arrow_down', self.DownTurn, [1])
         self.accept('arrow_down-up', self.DownTurn, [0])
         self.accept('s', self.DownTurn, [1])
