@@ -27,6 +27,7 @@ class Player(ShowBase):
         self.modelNode.setTexture(tex, 1)
         self.SetKeyBindings()
 
+    # Forward and backward thrusts (back thrusts still in development)
     def Thrust(self, keyDown):
         if keyDown:
             self.taskManager.add(self.ApplyThrust, 'forward-thrust')
@@ -38,6 +39,17 @@ class Player(ShowBase):
         trajectory.normalize()
         self.modelNode.setFluidPos(self.modelNode.getPos() + trajectory * rate)
         return Task.cont
+    # Back thrust still WIP.
+    def BackThrust(self, keyDown):
+        if keyDown:
+            self.taskManager.add(self.ApplyBackThrust, 'backward-thrust')
+        else:
+            self.taskManager.remove('backward-thrust')
+    def ApplyBackThrust(self, keyDown):
+        rate = 8
+        trajectory = self.renderer.getRelativeVector(self.modelNode, Vec3.back())
+        trajectory.normalize()
+        self.modelNode.setFluidPos(self.modelNode.getPos() - trajectory * rate)       
     # Left and Right turns.
     def LeftTurn(self, keyDown):
         if keyDown:
@@ -46,7 +58,7 @@ class Player(ShowBase):
             self.taskManager.remove('left-turn')
     def ApplyLeftTurn(self, task):
         # Rate = turn speed
-        rate = 1
+        rate = 3
         self.modelNode.setH(self.modelNode.getH() + rate)
         return Task.cont          
     def RightTurn(self, keyDown):
@@ -56,7 +68,7 @@ class Player(ShowBase):
             self.taskManager.remove('right-turn')
     def ApplyRightTurn(self, task):
         # Rate = turn speed
-        rate = 1
+        rate = 3
         self.modelNode.setH(self.modelNode.getH() - rate)
         return Task.cont          
     # Left and Right rolls.
@@ -67,7 +79,7 @@ class Player(ShowBase):
             self.taskManager.remove('left-roll')
     def ApplyLeftRoll(self, task):
         # Rate = turn speed
-        rate = 1
+        rate = 3
         self.modelNode.setR(self.modelNode.getR() + rate)
         return Task.cont
     def RightRoll(self, keyDown):
@@ -77,7 +89,7 @@ class Player(ShowBase):
             self.taskManager.remove('right-roll')
     def ApplyRightRoll(self, task):
         # Rate = turn speed
-        rate = 1
+        rate = 3
         self.modelNode.setR(self.modelNode.getR() - rate)
         return Task.cont
     # Up and Down turns.
@@ -87,7 +99,7 @@ class Player(ShowBase):
         else:
             self.taskManager.remove('turn-up')
     def ApplyUpTurn(self, task):
-        rate = 1
+        rate = 3
         self.modelNode.setP(self.modelNode.getP() + rate)
         return Task.cont    
     def DownTurn(self, keyDown):
@@ -96,7 +108,7 @@ class Player(ShowBase):
         else:
             self.taskManager.remove('turn-down')
     def ApplyDownTurn(self, task):
-        rate = 1
+        rate = 3
         self.modelNode.setP(self.modelNode.getP() - rate)
         return Task.cont    
     # Keybinds.
